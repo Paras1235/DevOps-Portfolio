@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Skill Tracker</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; background-color: #f4f7f6; text-align: center; padding: 50px; }
+        .card { background: white; padding: 30px; border-radius: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); display: inline-block; min-width: 350px; }
+        h1 { color: #2c3e50; }
+        input { padding: 10px; width: 50%; border: 1px solid #ddd; border-radius: 5px; margin-right: 5px; }
+        
+        /* Two different button styles */
+        .btn-add { padding: 10px 15px; background-color: #3498db; color: white; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; }
+        .btn-add:hover { background-color: #2980b9; }
+        
+        .btn-clear { padding: 10px 15px; background-color: #e74c3c; color: white; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; margin-top: 10px; }
+        .btn-clear:hover { background-color: #c0392b; }
+        
+        ul { list-style: none; padding: 0; margin-top: 20px; text-align: left; }
+        li { background: #e8f4fd; color: #2980b9; margin: 8px 0; padding: 12px; border-radius: 8px; font-weight: bold; border-left: 5px solid #3498db; }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h1>Welcome, Paras!</h1>
+        <p>Manage your technical skills:</p>
+        
+        <form method="POST">
+            <input type="text" name="new_skill" placeholder="e.g. Kubernetes">
+            <button type="submit" name="add_btn" class="btn-add">Add</button>
+            <br>
+            <button type="submit" name="clear_btn" class="btn-clear">Clear All Skills</button>
+        </form>
+
+        <hr style="margin: 20px 0; border: 0; border-top: 1px solid #eee;">
+
+        <ul>
+            {% for skill in skills %}
+                <li>{{ skill }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>
