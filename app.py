@@ -1,8 +1,9 @@
 import requests
 import sqlite3
 import os
-from flask import Flask, render_template, request
-
+import sqlite3
+import requests
+from flask import Flask, render_template, request, redirect, send_from_directory
 # This tells Flask exactly where to find your 'static' folder
 app = Flask(__name__, static_folder='static')
 NEWS_API_KEY = '709559f1359f4dbdadd243b382a14f55'
