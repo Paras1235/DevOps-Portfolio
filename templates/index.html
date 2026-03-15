@@ -1,43 +1,88 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Skill Tracker</title>
-    <style>
-        body { font-family: 'Segoe UI', sans-serif; background-color: #f4f7f6; text-align: center; padding: 50px; }
-        .card { background: white; padding: 30px; border-radius: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); display: inline-block; min-width: 350px; }
-        h1 { color: #2c3e50; }
-        input { padding: 10px; width: 50%; border: 1px solid #ddd; border-radius: 5px; margin-right: 5px; }
-        
-        /* Two different button styles */
-        .btn-add { padding: 10px 15px; background-color: #3498db; color: white; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; }
-        .btn-add:hover { background-color: #2980b9; }
-        
-        .btn-clear { padding: 10px 15px; background-color: #e74c3c; color: white; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; margin-top: 10px; }
-        .btn-clear:hover { background-color: #c0392b; }
-        
-        ul { list-style: none; padding: 0; margin-top: 20px; text-align: left; }
-        li { background: #e8f4fd; color: #2980b9; margin: 8px 0; padding: 12px; border-radius: 8px; font-weight: bold; border-left: 5px solid #3498db; }
-    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paras Thakur | DevOps Portfolio</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-    <div class="card">
-        <h1>Welcome, Paras!</h1>
-        <p>Manage your technical skills:</p>
+    <div class="main-container">
         
-        <form method="POST">
-            <input type="text" name="new_skill" placeholder="e.g. Kubernetes">
-            <button type="submit" name="add_btn" class="btn-add">Add</button>
-            <br>
-            <button type="submit" name="clear_btn" class="btn-clear">Clear All Skills</button>
-        </form>
+        <div class="sidebar">
+            <img src="{{ url_for('static', filename='profile_image.jpg') }}" class="profile-img">
+            <h2>Paras Thakur</h2>
+            <p class="tagline">Computer Science Undergraduate<br>DevOps & Automation Specialist</p>
+         <div class="status-indicator">
+                <span class="dot"></span> System Operational (99% Uptime)
+         </div>
+           <div class="contact-info">
+    <p>
+        <i class="fas fa-phone-alt"></i> 
+        <a href="tel:+9459682330contact-link">Call: +919459682330 </a>
+    </p>
+    
+    <p>
+        <i class="fas fa-envelope"></i> 
+        <a href="mailto:thakurparas330@gmail.com" class="contact-link">Mail Me</a>
+    </p>
+    
+    <p>
+        <i class="fab fa-linkedin"></i> 
+        <a href="https://www.linkedin.com/in/paras-thakur-77544824b" target="_blank" class="contact-link">LinkedIn Profile</a>
+    </p>
+    
+    <p>
+        <i class="fab fa-github"></i> 
+        <a href="https://github.com/Paras1235" target="_blank" class="contact-link">GitHub Projects</a>
+    </p>
 
-        <hr style="margin: 20px 0; border: 0; border-top: 1px solid #eee;">
+    <p><i class="fas fa-map-marker-alt"></i> CEC Landran, Mohali</p>
+    <p><i class="fas fa-award"></i> Top 10% Academics</p>
+</div>
 
-        <ul>
-            {% for skill in skills %}
-                <li>{{ skill }}</li>
-            {% endfor %}
-        </ul>
+            <div class="portfolio-actions">
+                <a href="{{ url_for('static', filename='resume.pdf') }}" download class="btn-highlighted-resume">
+                    <i class="fas fa-file-download pulse-icon"></i> Download Resume
+                </a>
+            </div>
+
+            <div class="skill-form-container">
+                <h3>Add New Skill</h3>
+                <form action="/" method="POST">
+                    <input type="text" name="skill" placeholder="Enter Skill (e.g. Kubernetes)" required>
+                    <button type="submit" class="btn-update">Update Skills</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="content-area">
+            <section class="proficiency-section">
+                <h2>Technical Proficiency</h2>
+                <div class="skills-grid">
+                    {% for skill in skills %}
+                    <span class="skill-badge">{{ skill }}</span>
+                    {% endfor %}
+                </div>
+            </section>
+
+            <section class="news-section">
+                <h2>Live Technology Feed</h2>
+                <div class="news-grid">
+                    {% for article in articles %}
+                    <div class="news-card">
+                        <img src="{{ article.urlToImage if article.urlToImage else 'https://via.placeholder.com/300x150' }}" alt="news">
+                        <div class="news-content">
+                            <h3>{{ article.title[:80] }}...</h3>
+                            <a href="{{ article.url }}" target="_blank" class="news-link">Explore Full Insight</a>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </section>
+        </div>
+
     </div>
 </body>
 </html>
